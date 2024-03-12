@@ -47,7 +47,7 @@ def download_file(web_url):
     soup = bs4.BeautifulSoup(result.text, "html.parser")
     # 查找图片资源
     img_list = soup.select('.vpic_wrap img')
-    if img_list == []:
+    if not img_list:
         print('未发现图片资源！')
     else:
         # 找到资源，开始写入
@@ -56,7 +56,7 @@ def download_file(web_url):
             write_file(file_url, 1)
     # 查找视频资源
     video_list = soup.select('.threadlist_video a')
-    if video_list == []:
+    if not video_list:
         print('未发现视频资源！')
     else:
         # 找到资源，开始写入
@@ -65,7 +65,7 @@ def download_file(web_url):
             write_file(file_url, 2)
     print('下载资源结束：', web_url)
     next_link = soup.select('#frs_list_pager .next')
-    if next_link == []:
+    if not next_link:
         print('下载资料结束！')
     else:
         url = next_link[0].get('href')
